@@ -1,0 +1,1 @@
+docker run -d --name cloud-redis -p 8379:6379 redis --requirepass "kaleldo123456"
