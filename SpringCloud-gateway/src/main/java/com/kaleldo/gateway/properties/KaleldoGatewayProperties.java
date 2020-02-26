@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootConfiguration
 @PropertySource(value = {"classpath:kaleldo-gateway.properties"})
 @ConfigurationProperties(prefix = "kaleldo.gateway")
-public class GatewayProperties {
+public class KaleldoGatewayProperties {
     /**
      * 禁止外部访问的 URI，多个值的话以逗号分隔
      */

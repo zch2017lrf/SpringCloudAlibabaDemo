@@ -12,6 +12,33 @@ spring:
               url: http://localhost:8401
               username: kaleldo
               password: 123456
+  cloud:
+      gateway:
+        routes:
+          - id: Kaleldo-Auth
+            uri: lb://Kaleldo-Auth #路由的目标地址，可以指定为HTTP地址，也可以通过lb://{微服务名称}来指定。lb为load balance的缩写，微服务名称为注册中心中对应的微服务名称。比如将uri配置为lb://Kaleldo-Auth
+            predicates:
+              - Path=/auth/** #表示请求Path以/auth开头的都会被匹配
+          - id: Server-System
+            uri: lb://Server-System
+            predicates:
+              - Path=/system/**
+            filters: #定义Server-System的熔断器
+              - name: Hystrix #指定添加Hystrix过滤器
+                args:
+                  name: testfallback
+                  fallbackUri: forward:/fallback/Server-System #fallbackUri指定了回退的重定向地址
+          - id: Server-Test
+            uri: lb://Server-Test
+            predicates:
+              - Path=/test/**
+            filters: #定义Server-Test的熔断器
+              - name: Hystrix #指定添加Hystrix过滤器
+                args:
+                  name: testfallback
+                  fallbackUri: forward:/fallback/Server-Test #fallbackUri指定了回退的重定向地址
+        default-filters:
+              - StripPrefix=1 #请求转发前，将Path的内容截去前面一位
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 20
@@ -23,28 +50,28 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-zuul:
-  routes:
-    auth:
-      path: /auth/**
-      serviceId: Kaleldo-Auth
-      sensitiveHeaders: "*"
-    system:
-      path: /system/**
-      serviceId: Server-System
-      sensitiveHeaders: "*"
-    test:
-      path: /test/**
-      serviceId: Server-Test
-      sensitiveHeaders: "*"
-  retryable: true
-  ignored-services: "*"
-  ribbon:
-    eager-load:
-      enabled: true
+#zuul:
+#  routes:
+#    auth:
+#      path: /auth/**
+#      serviceId: Kaleldo-Auth
+#      sensitiveHeaders: "*"
+#    system:
+#      path: /system/**
+#      serviceId: Server-System
+#      sensitiveHeaders: "*"
+#    test:
+#      path: /test/**
+#      serviceId: Server-Test
+#      sensitiveHeaders: "*"
+#  retryable: true
+#  ignored-services: "*"
+#  ribbon:
+#    eager-load:
+#      enabled: true
 
-ribbon:
-  ReadTimeout: 3000
+#ribbon:
+#  ReadTimeout: 3000
 
 info:
   app:
@@ -60,3 +87,10 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000 #超时时间
