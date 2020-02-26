@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Kaleldo-Auth
+  cloud:
+    nacos:
+          discovery:
+            server-addr: ${nacos.url}:8001
+          config:
+              server-addr: ${nacos.url}:8001
+              group: DEFAULT_GROUP
+              prefix: auth
+              file-extension: yaml

@@ -5,7 +5,7 @@
     <modules>
         <module>SpringCloud-auth</module>
         <module>SpringCloud-Common</module>
-        <module>SpringCloud-Register</module>
+        <!--<module>SpringCloud-Register</module>-->
         <module>SpringCloud-Server-System</module>
         <module>SpringCloud-Server-Test</module>
         <module>SpringCloud-gateway</module>
@@ -32,6 +32,7 @@
 
         <!-- Spring Settings -->
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud-alibaba.version>0.9.0.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <dependencyManagement>
@@ -40,6 +41,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

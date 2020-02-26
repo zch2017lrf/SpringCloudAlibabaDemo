@@ -1,50 +1,55 @@
-spring:
-  application:
-    name: Server-Test
-  thymeleaf:
-      cache: false
-      mode: LEGACYHTML5
-      encoding: UTF-8
-      servlet:
-        content-type: text/html
-  autoconfigure:
-    exclude: com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-  boot:
-          admin:
-            client:
-              url: http://localhost:8401
-              username: kaleldo
-              password: 123456
-info:
-  app:
-    name: ${spring.application.name}
-    description: "@project.description@"
-    version: "@project.version@"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: ALWAYS
-
-server:
-  port: 8764
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-security:
-  oauth2:
-    resource:
-      id: ${spring.application.name}
-      user-info-uri: http://localhost:8301/auth/user
-feign:
-  hystrix:
-    enabled: true
-hystrix:
-    shareSecurityContext: true
+#spring:
+#  application:
+#    name: Server-Test
+#  thymeleaf:
+#      cache: false
+#      mode: LEGACYHTML5
+#      encoding: UTF-8
+#      servlet:
+#        content-type: text/html
+#  autoconfigure:
+#    exclude: com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+#  boot:
+#          admin:
+#            client:
+#              url: http://localhost:8401
+#              username: kaleldo
+#              password: 123456
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: ${nacos.url}:8001
+#info:
+#  app:
+#    name: ${spring.application.name}
+#    description: "@project.description@"
+#    version: "@project.version@"
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
+#
+#server:
+#  port: 8764
+#
+##eureka:
+##  client:
+##    serviceUrl:
+##      defaultZone: http://localhost:8761/eureka/
+#
+#
+#security:
+#  oauth2:
+#    resource:
+#      id: ${spring.application.name}
+#      user-info-uri: http://localhost:8301/auth/user
+#feign:
+#  hystrix:
+#    enabled: true
+#hystrix:
+#    shareSecurityContext: true

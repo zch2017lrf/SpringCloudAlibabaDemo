@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Server-Test
+  cloud:
+    nacos:
+          discovery:
+            server-addr: ${nacos.url}:8001
+          config:
+              server-addr: ${nacos.url}:8001
+              group: DEFAULT_GROUP
+              prefix: test
+              file-extension: yaml

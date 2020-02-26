@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableFeignClients
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 //@EnableKaleldoAuthExceptionHandler//认证类型异常翻译

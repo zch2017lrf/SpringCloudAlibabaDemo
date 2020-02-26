@@ -1,72 +1,82 @@
-server:
-  port: 8101
-
-spring:
-  application:
-    name: Kaleldo-Auth
-  boot:
-        admin:
-          client:
-            url: http://localhost:8401
-            username: kaleldo
-            password: 123456
-  redis:
-      database: 0
-      host: 192.168.1.195
-      port: 8379
-      password: kaleldo123456
-      lettuce:
-        pool:
-          min-idle: 8
-          max-idle: 500
-          max-active: 2000
-          max-wait: 10000
-      timeout: 5000
-  datasource:
-    dynamic:
-      hikari:
-        connection-timeout: 30000
-        max-lifetime: 1800000
-        max-pool-size: 15
-        min-idle: 5
-        connection-test-query: select 1
-        pool-name: FebsHikariCP
-      primary: base
-      datasource:
-        base:
-          username: root
-          password: root
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/kaleldo_cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
-mybatis-plus:
-  type-aliases-package: com.kaleldo.pojo.system
-  mapper-locations: classpath:mapper/*.xml
-  configuration:
-    jdbc-type-for-null: null
-  global-config:
-    banner: false
-
-eureka:
-  instance:
-    lease-renewal-interval-in-seconds: 20
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    instance-info-replication-interval-seconds: 30
-    registry-fetch-interval-seconds: 3
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-info:
-  app:
-    name: ${spring.application.name}
-    description: "@project.description@"
-    version: "@project.version@"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: ALWAYS
+#server:
+#  port: 8101
+#
+#spring:
+#  application:
+#    name: Kaleldo-Auth
+#  boot:
+#        admin:
+#          client:
+#            url: http://localhost:8401
+#            username: kaleldo
+#            password: 123456
+#  redis:
+#      database: 0
+#      host: 192.168.1.195
+#      port: 8379
+#      password: kaleldo123456
+#      lettuce:
+#        pool:
+#          min-idle: 8
+#          max-idle: 500
+#          max-active: 2000
+#          max-wait: 10000
+#      timeout: 5000
+#  datasource:
+#    dynamic:
+#      hikari:
+#        connection-timeout: 30000
+#        max-lifetime: 1800000
+#        max-pool-size: 15
+#        min-idle: 5
+#        connection-test-query: select 1
+#        pool-name: FebsHikariCP
+#      primary: base
+#      datasource:
+#        base:
+#          username: root
+#          password: kaleldo123456
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://122.51.68.122:8306/kaleldo_cloud_base?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+#  cloud:
+#    nacos:
+#          discovery:
+#            server-addr: ${nacos.url}:8001
+#          config:
+#              server-addr: ${nacos.url}:8001
+#              group: DEFAULT_GROUP
+#              prefix: febs-auth
+#              file-extension: yaml
+#
+#mybatis-plus:
+#  type-aliases-package: com.kaleldo.pojo.system
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    jdbc-type-for-null: null
+#  global-config:
+#    banner: false
+#
+##eureka:
+##  instance:
+##    lease-renewal-interval-in-seconds: 20
+##  client:
+##    register-with-eureka: true
+##    fetch-registry: true
+##    instance-info-replication-interval-seconds: 30
+##    registry-fetch-interval-seconds: 3
+##    serviceUrl:
+##      defaultZone: http://localhost:8761/eureka/
+#info:
+#  app:
+##    name: ${spring.application.name}
+#    description: "@project.description@"
+#    version: "@project.version@"
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: ALWAYS

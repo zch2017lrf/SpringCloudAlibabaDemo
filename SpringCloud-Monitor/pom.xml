@@ -16,5 +16,11 @@
     <packaging>pom</packaging>
     <name>SpringCloud-Monitor</name>
     <description>SpringCloud-Monitor监控模块</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
