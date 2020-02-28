@@ -1,11 +1,12 @@
 package com.test;
 
 import com.kaleldo.annotation.KaleldoCloudApplication;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 //@EnableDiscoveryClient
 @EnableFeignClients
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 //@EnableKaleldoServerProtect//开启微服务防护，避免客户端绕过网关直接请求微服务
 @KaleldoCloudApplication
 @SpringBootApplication
+@MapperScan("com.test.mapper")
+@EnableTransactionManagement
 public class TestApplication {
 
     public static void main(String[] args) {
