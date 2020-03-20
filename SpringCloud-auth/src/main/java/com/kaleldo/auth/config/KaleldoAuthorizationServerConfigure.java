@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import java.util.UUID;
+
 /**
  * 认证服务器配置类
  */
@@ -74,9 +76,17 @@ public class KaleldoAuthorizationServerConfigure extends AuthorizationServerConf
 
     @Bean
     public TokenStore tokenStore() {
-        return new RedisTokenStore(redisConnectionFactory);
+
+        RedisTokenStore redisTokenStore = new RedisTokenStore(redisConnectionFactory);
+        // 解决每次生成的 token都一样的问题
+        redisTokenStore.setAuthenticationKeyGenerator(oAuth2Authentication -> UUID.randomUUID().toString());
+        return redisTokenStore;
     }
 
+    /**
+     * 配置Redis缓存
+     * @return
+     */
     @Primary
     @Bean
     public DefaultTokenServices defaultTokenServices() {
